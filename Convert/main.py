@@ -5,7 +5,6 @@ import argparse
 from pdf_to_markdown import (
     MarkdownToDocument,
     PrintDocument,
-    WriteAsLangchainDocuments,
 )
 
 DEBUG = False
@@ -37,21 +36,11 @@ class Converter:
     def markdown_output_filepath():
         return os.path.join(os.getcwd(), Converter.markdown_output_filename())
 
-    @staticmethod
-    def sentences_output_filepath():
-        return os.path.join(os.getcwd(), "Sentences_as_LangChain_Document.json")
-
     def markdown_target_filename(self):
         file_no_ext = os.path.splitext(
             os.path.basename(self.original_document_filename)
         )[0]
         return file_no_ext + "_-_local_converter.md"
-
-    def sentences_target_filename(self):
-        file_no_ext = os.path.splitext(
-            os.path.basename(self.original_document_filename)
-        )[0]
-        return file_no_ext + "_-_Sentences_as_LangChain_Document.json"
 
     def __init__(self, original_document_filename):
         self.original_document_filename = original_document_filename
@@ -74,12 +63,6 @@ class Converter:
         # Write the markdown file
         document.to_markdown(Converter.markdown_output_filepath())
 
-        # For downstream Knowledge Graph extraction
-        if True:
-            WriteAsLangchainDocuments(document).write_sentences(
-                Converter.sentences_output_filepath()
-            )
-
     def move_outputs_to_output_dir(self, target_output_dir):
         converted_markdown_source = Converter.markdown_output_filepath()
 
@@ -93,21 +76,9 @@ class Converter:
             target_output_dir, self.markdown_target_filename()
         )
         shutil.move(converted_markdown_source, converted_markdown_target)
-
-        sentences_source = Converter.sentences_output_filepath()
-        if not os.path.exists(sentences_source):
-            print(f"Sentences output file ({sentences_source}) not found. Exiting.")
-            sys.exit()
-
-        sentences_target = os.path.join(
-            target_output_dir,
-            self.sentences_target_filename(),
-        )
-        shutil.move(sentences_source, sentences_target)
         if DEBUG:
-            print("Following files moved to output:")
+            print("Following file moved to output:")
             print(f"  - {converted_markdown_target}")
-            print(f"  - {sentences_target}")
 
 
 def convert(original_document_filename):
