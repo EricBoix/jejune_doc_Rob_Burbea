@@ -5,5 +5,9 @@ keywords: ["Buddhism", "emptiness", "meditation", "retreat", "Dharma talk", "The
 slug: meditation-on-emptiness-retreat
 
 markdown_file: original_data/2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat.md
-sentences_file: result_data/2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat_-_Sentences_as_LangChain_Document.json
-turtle_file: result_data/Rob-Burbea-Meditation-On-Emptiness-Opening-talk.MarkdownAndSentences.ttl
+
+graph_extractions:
+  - model_name:       unknown
+    chunk_short_name: Sentences
+    chunk_file:       result_data/2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat_-_Sentences_as_LangChain_Document.json
+    turtle_file:      result_data/Rob-Burbea-Meditation-On-Emptiness-Opening-talk.MarkdownAndSentences.ttl
