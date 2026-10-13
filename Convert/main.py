@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import shutil
 import argparse
@@ -19,6 +20,12 @@ def parse_arguments():
         type=str,
         metavar="DIR",
         help="Relative path to output directory (default is CWD).",
+    )
+    parser.add_argument(
+        "--test",
+        action="store_true",
+        default=False,
+        help="Run pytest tests instead of converting.",
     )
 
     args = parser.parse_args()
@@ -89,6 +96,9 @@ def convert(original_document_filename):
 
 if __name__ == "__main__":
     args = parse_arguments()
+    if args.test:
+        result = subprocess.run(["pytest", "test_main.py"])
+        sys.exit(result.returncode)
     converter = convert(
         "2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat.md"
     )
