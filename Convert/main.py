@@ -82,15 +82,15 @@ class Converter:
 
 
 def convert(original_document_filename):
-    args = parse_arguments()
     converter = Converter(original_document_filename)
     converter.run()
-    if args.output_directory:
-        converter.move_outputs_to_output_dir(args.output_directory)
     return converter
 
 
 if __name__ == "__main__":
-    convert(
+    args = parse_arguments()
+    converter = convert(
         "2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat.md"
     )
+    if args.output_directory:
+        converter.move_outputs_to_output_dir(args.output_directory)
