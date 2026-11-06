@@ -31,14 +31,14 @@ python main.py
 ## Running the PDF conversion with docker
 
 ```bash
-docker build -t jejuneness:doc_Rob_Burbea https://github.com/EricBoix/jejune_doc_Rob_Burbea.git#:DockerContext
-docker run --rm jejuneness:doc_Rob_Burbea --help
+docker build -t jejune:doc_Rob_Burbea https://github.com/EricBoix/jejune_doc_Rob_Burbea.git#:DockerContext
+docker run --rm jejune:doc_Rob_Burbea --help
 ```
 
 Extracting the result out of the container requires local filesystem mount
 
 ```bash
-docker run --rm  -v `pwd`/junk:/output jejuneness:doc_Rob_Burbea --output_directory /output
+docker run --rm  -v `pwd`/junk:/output jejune:doc_Rob_Burbea --output_directory /output
 ```
 
 ## Running the full data workflow
