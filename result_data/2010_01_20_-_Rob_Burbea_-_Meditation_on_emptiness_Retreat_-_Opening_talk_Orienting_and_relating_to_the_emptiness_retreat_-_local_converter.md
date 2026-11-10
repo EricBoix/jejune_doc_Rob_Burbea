@@ -3,7 +3,6 @@
 
 ## Beginning of the teaching
 
-
 For me, this is really, really, I feel, very much a privilege for me to be able to offer these teachings, and I know John feels the same. It's very beautiful. For me, it's a very beautiful experience. It's beautiful to see so many people here, and that this inspires and calls you and attracts you, to me, is very touching. These teachings of emptiness, I think it's fair to say they're really at the heart of what the Buddha was teaching. They're really at the heart of the Buddha's path. They're at the heart of his awakening. Very much at the heart, the pith, the core of what he awakened to -- it was emptiness. And then his teaching, in a way -- it's not obvious at first, but it was all centred around emptiness. We can say 'emptiness' and 'dependent origination' -- we'll be talking about these two -- they're two sides of the same coin. But he actually said, > "First there is the understanding. First there is the realization of emptiness or dependent > origination, and then there is nibbāna."[^footnote_1]
 
 They follow one from another very naturally. He was very clear about that. Without that, there isn't awakening, there isn't nibbāna. And so we say, "What did he wake up to?" He woke up to emptiness. He woke up to dependent origination.

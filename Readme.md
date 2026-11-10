@@ -22,10 +22,17 @@ The markdown transcriptions were extracted out of [the Hermes Amāra Foundation 
 
 ```bash
 cd `git rev-parse --show-toplevel`/Convert
-python3.10 -m venv venv
-source ./venv/bin/activate
-pip install -r requirements.txt
-python main.py
+uv sync
+uv run main.py --help
+uv run main.py
+```
+
+Running the tests
+
+```bash
+cd `git rev-parse --show-toplevel`/Convert
+uv sync --group dev
+uv run pytest -vv
 ```
 
 ## Running the PDF conversion with docker

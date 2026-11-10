@@ -1,0 +1,19 @@
+[project]
+name = "convert-rob-burbea"
+version = "0.1.0"
+description = "Converts Rob Burbea's teachings transcriptions into sanitized markdown"
+requires-python = ">=3.15"
+dependencies = [
+    "pdf-to-markdown",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+pdf-to-markdown = { git = "https://github.com/EricBoix/pdf-to-markdown.git" }
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
