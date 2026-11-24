@@ -22,6 +22,14 @@ def parse_arguments():
         help="Relative path to output directory (default is CWD).",
     )
     parser.add_argument(
+        "--maximum_line_length",
+        type=int,
+        metavar="N",
+        default=None,
+        help="Break paragraph lines longer than N characters (no new paragraph "
+        "is introduced). 0 disables breaking (default: the converter's own value).",
+    )
+    parser.add_argument(
         "--test",
         action="store_true",
         default=False,
@@ -49,8 +57,15 @@ class Converter:
         )[0]
         return file_no_ext + "_-_local_converter.md"
 
-    def __init__(self, original_document_filename):
+    # Lines of paragraphs longer than this are broken (markdownlint MD013),
+    # without starting new paragraphs.
+    DEFAULT_MAXIMUM_LINE_LENGTH = 800
+
+    def __init__(self, original_document_filename, maximum_line_length=None):
         self.original_document_filename = original_document_filename
+        if maximum_line_length is None:
+            maximum_line_length = self.DEFAULT_MAXIMUM_LINE_LENGTH
+        self.maximum_line_length = maximum_line_length
 
     def run(self):
         document_filename = os.path.join(
@@ -61,6 +76,7 @@ class Converter:
         )
 
         document = MarkdownToDocument(document_filename).get_document()
+        document.maximum_line_length = self.maximum_line_length
         # On debugging purposes
         if False:
             PrintDocument(document).pages()
@@ -88,8 +104,8 @@ class Converter:
             print(f"  - {converted_markdown_target}")
 
 
-def convert(original_document_filename):
-    converter = Converter(original_document_filename)
+def convert(original_document_filename, maximum_line_length=None):
+    converter = Converter(original_document_filename, maximum_line_length)
     converter.run()
     return converter
 
@@ -100,7 +116,8 @@ if __name__ == "__main__":
         result = subprocess.run(["pytest", "test_main.py"])
         sys.exit(result.returncode)
     converter = convert(
-        "2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat.md"
+        "2010_01_20_-_Rob_Burbea_-_Meditation_on_emptiness_Retreat_-_Opening_talk_Orienting_and_relating_to_the_emptiness_retreat.md",
+        args.maximum_line_length,
     )
     if args.output_directory:
         converter.move_outputs_to_output_dir(args.output_directory)
